@@ -37,7 +37,7 @@ export default function TodoItem({ getDetailActivity, activity, setActivity }){
         await deleteTodoActivity(id);
         getDetailActivity();
         setShowModal(false);
-        setTimeout(() => setShowAlert(true),  300);
+        setTimeout(() => setShowAlert(true),  50);
     }
 
     const FindAndEditTodo = (todo) => {

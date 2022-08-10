@@ -34,7 +34,7 @@ export default function Home(){
         if(response.status !== 'failed'){
             fetchData();
             setShowModal(false);
-            setTimeout(() => setShowAlert(true), 300);
+            setTimeout(() => setShowAlert(true), 50);
         }
     }
     const handleFindActivity = (id) => {
