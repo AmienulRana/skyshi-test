@@ -16,9 +16,9 @@ export const dataPriority = [
 export default function DropdownTodo(props){
     const { showDropdown, priority, handleStatePriority = () => {}, setShowDropdown = () => {}} = props;
     return(
-        <Dropdown data-cy="modal-add-priority-dropdown">
+        <Dropdown>
             <TitleDropdown>
-                <div className={styles.titleDropdown} onClick={() => setShowDropdown(state => !state)}>
+                <div className={styles.titleDropdown} onClick={() => setShowDropdown(state => !state)} data-cy="modal-add-priority-dropdown">
                     { priority ?
                         <p><span className={['levelColor', priority.level].join(' ')} />{ priority.title }</p> :
                         <h1>Pilih Priority</h1>
@@ -31,7 +31,7 @@ export default function DropdownTodo(props){
                     <button 
                         key={data.level}
                         type="button" 
-                        data-cy={`modal-add-priority-${data.level}`} 
+                        data-cy="modal-add-priority-item" 
                         onClick={() => handleStatePriority(data)}
                     >
                         <span className={['levelColor', data.level].join(' ')} /> 
