@@ -26,10 +26,13 @@
     text-decoration: line-through;
     color: var(--disabled-color);
 }
-.todoItem svg{
+.todoItem button{
     cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: 0;
 }
-.todoItem svg.delete{
+.todoItem button{
     position:absolute;
     top: 50%;
     right: 29px;

@@ -46,10 +46,14 @@ export default function TodoItem({ getDetailActivity, activity, setActivity }){
         <>
             {activity.todo_items.map(todo => (
                 <div className={styles.todoItem} key={todo.id} data-cy="todo-item">
-                    <input type="checkbox" data-cy="todo-item-checkbox" onChange={() => handleChangeTodoDone(todo)} checked={todo.is_active} />
+                    <label data-cy="todo-item-checkbox">
+                        <input type="checkbox" onChange={() => handleChangeTodoDone(todo)} checked={todo.is_active} />
+                    </label>
                     <p className={todo.is_active > 0 ? styles.done : ''} data-cy="todo-item-title"><span className={["levelColor", todo.priority].join(' ')} />{todo.title}</p>
                     <Pencil data-cy="todo-item-edit-button" onClick={() => FindAndEditTodo(todo.id)}/>
-                    <TrashIcon data-cy="todo-item-delete-button" className={styles.delete} onClick={() => handleDataToDelete({ title: todo.title, id: todo.id})} />
+                    <button type="button" data-cy="todo-item-delete-button" onClick={() => handleDataToDelete({ title: todo.title, id: todo.id})}>
+                        <TrashIcon className={styles.delete} />
+                    </button>
                 </div>
             ))}
             <ModalEditTodo 
