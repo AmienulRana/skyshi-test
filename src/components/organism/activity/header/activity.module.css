@@ -1,0 +1,14 @@
+.activity{
+    margin:43px 0 65px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width:100%;
+}
+
+.activity h1{
+    font-size: 36px;
+}
+.activity input{
+    background:none;
+}
