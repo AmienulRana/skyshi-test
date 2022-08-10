@@ -48,7 +48,7 @@ export default function ModalAddTodo({ id, getAllTodo, showModal, setShowModal})
                         type="text" 
                         value={modelTodo.title}
                         placeholder="Tambahkan name list item" 
-                        data-cy="modal-name-add-input" 
+                        data-cy="modal-add-name-input" 
                         required
                     />
                     <label htmlFor="priority" data-cy="modal-add-priority-title">PRIORITY</label>
