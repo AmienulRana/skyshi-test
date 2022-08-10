@@ -66,7 +66,10 @@ export default function Home(){
                             />
                         ))} 
                     </div> ) :
-                    ( <EmptyActivity className={styles.emptyActivity} /> )
+
+                    ( <div data-cy="activity-empty-state">
+                        <EmptyActivity className={styles.emptyActivity} />                  
+                    </div> )
             }
             <ModalDelete
                 dataToDelete={activityToDeleted}

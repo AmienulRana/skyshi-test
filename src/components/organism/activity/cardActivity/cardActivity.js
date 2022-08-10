@@ -12,8 +12,8 @@ export default function CardActivity(props){
         navigate(`/activity/${id}`)
     }
     return(
-        <div className={styles.cardActivity} key={index}>
-            <div className={styles.bodyActivity} onClick={handleToRedirect} data-cy={`activity-item`}>
+        <div className={styles.cardActivity} key={index} data-cy='activity-item'>
+            <div className={styles.bodyActivity} onClick={handleToRedirect}>
                 <h2 className={styles.activityTitle} data-cy="activity-item-title">
                     { title } 
                 </h2>
