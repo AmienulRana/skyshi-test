@@ -56,14 +56,14 @@ export default function Header(props){
                 </div>
                 <div className={styles.filter}>
                     <Dropdown classnamecustom={styles.dropdown}>
-                        <TitleDropdown 
+                        <button 
                             onClick={() => setShowDropdown(state => !state)} 
                             data-cy="todo-sort-button"
                             className={styles.titleDropdown}
                             setShowDropdown={setShowDropdown}
                         >
                             <SortIcon />
-                        </TitleDropdown>
+                        </button>
                         <DataDropdown showDropdown={showDropdown} classNameCustom={styles.dataDropdown}>
                             {ListToSort.map((list, index) => (
                                 <button 
