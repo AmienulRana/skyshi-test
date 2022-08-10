@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { addTodoActivity } from "../../../../action/todo";
 import DropdownTodo from "./dropdownTodo";
 import ModalHeader from "./modalHeader";
-import ModalFooter from "./modalFooter";
+import Button from "../../../elements/button";
 
 
 export default function ModalAddTodo({ id, getAllTodo, showModal, setShowModal}){
@@ -24,6 +24,7 @@ export default function ModalAddTodo({ id, getAllTodo, showModal, setShowModal})
         setModelTodo({...modelTodo, title : e.target.value})
     }
     const handleAddTodoActivity = async () => {
+        console.log('tes');
         if(modelTodo.title !== ''){
             const response = await addTodoActivity({...modelTodo, priority: priority ?  priority.level : 'very-high'});
             if(!response.error){
@@ -59,7 +60,16 @@ export default function ModalAddTodo({ id, getAllTodo, showModal, setShowModal})
                     />
                 </form>
             </section>
-            <ModalFooter handleFor={handleAddTodoActivity}/>
+            <section className={styles.modalFooter}>
+            <Button 
+                background="primary" 
+                datacy="modal-add-save-button"
+                onClick={handleAddTodoActivity}
+                disabled={modelTodo.title === ''}
+            >
+                Tambah
+            </Button>
+        </section>
         </Modal>
     )
 }

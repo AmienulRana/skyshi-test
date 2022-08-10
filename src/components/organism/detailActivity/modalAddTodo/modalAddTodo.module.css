@@ -81,3 +81,7 @@
 .modalFooter button{
     margin-right: 0;
 }
+.modalFooter button[disabled]{
+    opacity: 0.4;
+    cursor: auto;
+}
