@@ -6,11 +6,11 @@ import { useEffect, useRef } from 'react';
 export function TitleDropdown(props){
     const titleRef = useRef();
     useEffect(() => {
-        window.addEventListener('click', (e) => {
-            if(e.target !== titleRef.current){
-                props.setShowDropdown(false);
-            }
-        })
+        // window.addEventListener('click', (e) => {
+        //     if(e.target !== titleRef.current){
+        //         props.setShowDropdown(false);
+        //     }
+        // })
     }, [])
     return(
         <div {...props} ref={titleRef}>

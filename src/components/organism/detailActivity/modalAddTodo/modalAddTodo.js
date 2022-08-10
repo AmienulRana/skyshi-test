@@ -11,7 +11,7 @@ export default function ModalAddTodo({ id, getAllTodo, showModal, setShowModal})
     const [modelTodo, setModelTodo] = useState({
         activity_group_id: id,
         title: '',
-        is_active: false,
+        is_active: 0,
     })
     const [showDropdown, setShowDropdown] = useState(false);
     const [priority, setPriority] = useState(false);
@@ -29,6 +29,9 @@ export default function ModalAddTodo({ id, getAllTodo, showModal, setShowModal})
             if(!response.error){
                 getAllTodo();
                 setShowModal(false);
+                setModelTodo({...modelTodo, title: ''});
+                setPriority(false);
+                setShowDropdown(false);
             }
         }
     }
