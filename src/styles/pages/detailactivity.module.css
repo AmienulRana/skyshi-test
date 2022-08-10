@@ -23,6 +23,41 @@
 .activityAction svg{
     cursor: pointer;
 }
+.filter{
+    display: flex;
+    align-items: center;
+}
+.dropdown{
+    width: max-content !important;
+}
+.filter .titleDropdown{
+    margin-right: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 54px;
+    height: 54px;
+    border: 1px solid var(--disabled-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+.dataDropdown{
+    width: 235px !important;
+    height: max-content !important;
+}
+.dataDropdown button{
+    width: 100%;
+    padding: 12px 24px;
+    border: none;
+    border-bottom: 1px solid var(--grey-color);
+    background: transparent;
+    font-size:16px;
+    display: flex;
+    align-items: center;
+}
+.dataDropdown button svg{
+    margin-right: 15px;
+}
 .emptyTodoIcon{
     display:block;
     margin: auto;

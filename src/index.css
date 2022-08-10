@@ -40,4 +40,7 @@ body{
 .very-low{
   background: rgba(137, 66, 193, 1);
 }
+button{
+  cursor: pointer;
+}
 

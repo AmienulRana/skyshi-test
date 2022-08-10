@@ -17,14 +17,17 @@ export default function DropdownTodo(props){
     const { showDropdown, priority, handleStatePriority = () => {}, setShowDropdown = () => {}} = props;
     return(
         <Dropdown>
-            <TitleDropdown>
-                <div className={styles.titleDropdown} onClick={() => setShowDropdown(state => !state)} data-cy="modal-add-priority-dropdown">
-                    { priority ?
-                        <p><span className={['levelColor', priority.level].join(' ')} />{ priority.title }</p> :
-                        <h1>Pilih Priority</h1>
-                    }
-                    <ChevronBottom className={showDropdown ? styles.rotateChevron : ''} />
-                </div>
+            <TitleDropdown
+                className={styles.titleDropdown}
+                onClick={() => setShowDropdown(state => !state)} 
+                setShowDropdown={setShowDropdown} 
+                data-cy="modal-add-priority-dropdown"
+            >
+                { priority ?
+                    <p><span className={['levelColor', priority.level].join(' ')} />{ priority.title }</p> :
+                    <h1>Pilih Priority</h1>
+                }
+                <ChevronBottom className={showDropdown ? styles.rotateChevron : ''} />
             </TitleDropdown>
             <DataDropdown showDropdown={showDropdown} classNameCustom={styles.dataDropdown}>
                 {dataPriority.map(data => (

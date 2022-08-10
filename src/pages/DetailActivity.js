@@ -8,7 +8,6 @@ import ModalAddTodo from '../components/organism/detailActivity/modalAddTodo';
 import { EmptyTodo } from '../components/icons';
 import TodoItem from '../components/organism/detailActivity/todoItems';
 import Loading from '../components/elements/loading';
-import ModalEditTodo from '../components/organism/detailActivity/modalAddTodo/modalEditTodo';
 // import { getTodoActivity } from '../action/todo';
 
 
@@ -17,6 +16,7 @@ export default function DetailAcivity(){
     const [activity, setActivity] = useState({});
     const [titleActivity, setTitleActivity] = useState('');
     const [showModalAdd, setShowModalAdd] = useState(false);
+    const [filter, setFilter] = useState('Terbaru');
 
     const [loading, setLoading] = useState(true);
 
@@ -25,11 +25,45 @@ export default function DetailAcivity(){
         setActivity(response);
         setTitleActivity(response.title);
     }, []);
+
+    const compareStringForSort = (a, b)  => {
+        return a.title < b.title ? -1  : a.title > b.title ? 1 : 0;
+    }
+    const handleFilterTodoItem = () => {
+        let todo_items= [];
+        
+        switch(filter){
+            case 'Terlama' : 
+                todo_items = activity?.todo_items?.sort((a,b) => a.id - b.id);
+                setActivity({...activity, todo_items});
+                break;
+            case 'Terbaru' : 
+                todo_items = activity?.todo_items?.sort((a,b) => b.id - a.id);
+                return setActivity({...activity, todo_items});
+            case 'A-Z':
+                todo_items = activity.todo_items.sort(compareStringForSort);
+                return setActivity({...activity, todo_items});
+            case 'Z-A':
+                todo_items = activity.todo_items.sort(compareStringForSort).reverse();
+                return setActivity({...activity, todo_items});
+            case 'Belum Selesai':
+                todo_items = activity.todo_items.sort((a,b) => a.is_active - b.is_active);
+                return setActivity({...activity, todo_items});
+            default :
+                return;   
+        }
+    }
     useEffect(() => {
         getDetailActivity();
         setLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [getDetailActivity]);
+
+    useEffect(() => {
+        if(!loading){
+            handleFilterTodoItem();
+        }
+    }, [filter, loading, getDetailActivity]);
     return(
         <Layout>
             <Header 
@@ -39,6 +73,7 @@ export default function DetailAcivity(){
                 setShowModal={setShowModalAdd}
                 titleActivity={titleActivity} 
                 setTitleActivity={setTitleActivity}
+                setFilter={setFilter}
             />
             {loading ? 
                 ( <Loading /> ) :

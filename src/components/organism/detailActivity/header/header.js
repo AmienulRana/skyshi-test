@@ -1,11 +1,25 @@
 import HeaderActivity from '../../activity/header/activity';
 import Button from '../../../elements/button';
-import { ChevronLeft, Pencil, PlusIcon } from '../../../icons';
+import { ChevronLeft, Pencil, PlusIcon, SortIcon } from '../../../icons';
 import { editActivity } from '../../../../action/activity';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-export default function Header({ activity, setActivity, setShowModal, styles,titleActivity, setTitleActivity}){
+import Dropdown, { TitleDropdown, DataDropdown } from '../../../elements/dropdown/dropdown';
+import { SortNew, SortAZ, SortOld, SortUnfinished, SortZA } from '../../../icons';
+
+export const ListToSort = [
+    { title: 'Terbaru', Icon: SortNew },
+    { title: 'Terlama', Icon: SortOld },
+    { title: 'A-Z', Icon: SortAZ },
+    { title: 'Z-A', Icon: SortZA },
+    { title: 'Belum Selesai', Icon: SortUnfinished }
+]
+
+export default function Header(props){
+    const { activity, setActivity, setShowModal, styles, titleActivity, setTitleActivity, setFilter} = props;
+
     const [editTitleActivity, setEditTitleActivity] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);
     const backToHome = () => window.history.back();
 
     const handleEditStateTitleActivity = (e) => {
@@ -40,10 +54,35 @@ export default function Header({ activity, setActivity, setShowModal, styles,tit
                         <Pencil  />
                     </button>
                 </div>
-                <Button datacy="todo-add-button" background="primary" onClick={() => setShowModal(true)}>
-                    <PlusIcon />
-                    Tambah
-                </Button>
+                <div className={styles.filter}>
+                    <Dropdown classnamecustom={styles.dropdown}>
+                        <TitleDropdown 
+                            onClick={() => setShowDropdown(state => !state)} 
+                            data-cy="todo-sort-button"
+                            className={styles.titleDropdown}
+                            setShowDropdown={setShowDropdown}
+                        >
+                            <SortIcon />
+                        </TitleDropdown>
+                        <DataDropdown showDropdown={showDropdown} classNameCustom={styles.dataDropdown}>
+                            {ListToSort.map(list => (
+                                <button 
+                                    key={list.title}
+                                    type="button" 
+                                    data-cy="sort-selection"
+                                    onClick={() => setFilter(list.title)}
+                                >
+                                    <list.Icon />
+                                    <p data-cy="sort-selection-title">{ list.title } </p>
+                                </button>
+                            ))}
+                        </DataDropdown>
+                    </Dropdown>
+                    <Button datacy="todo-add-button" background="primary" onClick={() => setShowModal(true)}>
+                        <PlusIcon />
+                        Tambah
+                    </Button>
+                </div>
         </HeaderActivity>
     )
 }
@@ -55,4 +94,5 @@ Header.propTypes = {
     styles:PropTypes.object,
     titleActivity:PropTypes.string,
     setTitleActivity:PropTypes.func,
+    setFilter:PropTypes.func,
 }
