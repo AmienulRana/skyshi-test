@@ -49,7 +49,9 @@ export default function DetailAcivity(){
                         setActivity={setActivity}
                     />
                      :
-                    <EmptyTodo className={styles.emptyTodoIcon} />
+                     <div data-cy="todo-empty-state">
+                         <EmptyTodo className={styles.emptyTodoIcon} />
+                     </div>
                 )
             }
             <ModalAddTodo 

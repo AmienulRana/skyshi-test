@@ -37,7 +37,7 @@ export default function ModalAddTodo({ id, getAllTodo, showModal, setShowModal})
         handleAddTodoActivity();
     }
     return(
-        <Modal classNameModal={styles.modal} showModal={showModal} setShowModal={setShowModal}>
+        <Modal classNameModal={styles.modal} showModal={showModal} setShowModal={setShowModal} datacy="modal-add">
             <ModalHeader setShowModal={setShowModal} />
             <section className={styles.modalBody}>
                 <form onSubmit={handleSubmit}>
