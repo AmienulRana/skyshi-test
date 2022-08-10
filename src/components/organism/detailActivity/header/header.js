@@ -22,17 +22,24 @@ export default function Header(props){
     const [showDropdown, setShowDropdown] = useState(false);
     const backToHome = () => window.history.back();
 
+    const validateAndEditTitleActivite = async() => {
+        if(titleActivity !== activity.title){
+            const response = await editActivity({ id:activity.id, title:titleActivity });
+            setActivity({...activity, title: response.title});
+        }
+    }
     const handleEditStateTitleActivity = (e) => {
         setTitleActivity(e.target.value);            
     }
-    const handleEditTitleActivity = async (e) => {
+    const handleKeyDown = async (e) => {
         if(e.key === 'Enter'){
-            if(titleActivity !== activity.title){
-                const response = await editActivity({ id:activity.id, title:titleActivity });
-                setActivity({...activity, title: response.title});
-            }
+            validateAndEditTitleActivite();
             setEditTitleActivity(false);
         }
+    }
+    const handleBlur = () => {
+        validateAndEditTitleActivite();
+        setEditTitleActivity(false);
     }
     return(
         <HeaderActivity>
@@ -45,8 +52,9 @@ export default function Header(props){
                             type="text" 
                             value={titleActivity} 
                             onChange={handleEditStateTitleActivity}
-                            onKeyDown={handleEditTitleActivity}
-                            autoComplete={true}
+                            onKeyDown={handleKeyDown}
+                            onBlur={handleBlur}
+                            autoFocus={true}
                          /> : 
                         <h1 data-cy="todo-title" onClick={() => setEditTitleActivity(state => !state)}>{titleActivity}</h1>
                     }
