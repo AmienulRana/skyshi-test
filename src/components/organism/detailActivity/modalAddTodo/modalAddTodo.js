@@ -24,7 +24,6 @@ export default function ModalAddTodo({ id, getAllTodo, showModal, setShowModal})
         setModelTodo({...modelTodo, title : e.target.value})
     }
     const handleAddTodoActivity = async () => {
-        console.log('tes');
         if(modelTodo.title !== ''){
             const response = await addTodoActivity({...modelTodo, priority: priority ?  priority.level : 'very-high'});
             if(!response.error){

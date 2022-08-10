@@ -2,7 +2,13 @@
     display: flex;
     align-items: center;
 }
+.activityAction button{
+    border: 0;
+    background: transparent;
+}
 .activityAction h1{
+    font-size: 36px;
+    font-weight: bold;
     margin: 0 23px 0 36px;
 }
 

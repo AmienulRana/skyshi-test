@@ -23,7 +23,9 @@ export default function Header({ activity, setActivity, setShowModal, styles,tit
     return(
         <HeaderActivity>
                 <div className={styles.activityAction}>
-                    <ChevronLeft data-cy="todo-back-button" onClick={() => backToHome()} />
+                    <button data-cy="todo-back-button" onClick={() => backToHome()} type="button">
+                        <ChevronLeft />
+                    </button>
                     { editTitleActivity ? 
                         <input 
                             type="text" 
@@ -34,9 +36,9 @@ export default function Header({ activity, setActivity, setShowModal, styles,tit
                          /> : 
                         <h1 data-cy="todo-title" onClick={() => setEditTitleActivity(state => !state)}>{titleActivity}</h1>
                     }
-                    <Pencil 
-                        data-cy="todo-title-edit-button"
-                        onClick={() => setEditTitleActivity(state => !state)}/>
+                    <button data-cy="todo-title-edit-button" onClick={() => setEditTitleActivity(state => !state)}>
+                        <Pencil  />
+                    </button>
                 </div>
                 <Button datacy="todo-add-button" background="primary" onClick={() => setShowModal(true)}>
                     <PlusIcon />
