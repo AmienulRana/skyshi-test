@@ -21,7 +21,7 @@ export function TitleDropdown(props){
 export function DataDropdown (props){
     const { children, showDropdown, classNameCustom } = props;
     return(
-        <div className={[showDropdown && styles.dataActive, styles.data, classNameCustom].join(' ')}>
+        <div className={[showDropdown ? styles.dataActive : '', styles.data, classNameCustom].join(' ')}>
             { children }
         </div>
     )
