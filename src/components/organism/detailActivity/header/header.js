@@ -65,10 +65,11 @@ export default function Header(props){
                             <SortIcon />
                         </TitleDropdown>
                         <DataDropdown showDropdown={showDropdown} classNameCustom={styles.dataDropdown}>
-                            {ListToSort.map(list => (
+                            {ListToSort.map((list, index) => (
                                 <button 
                                     key={list.title}
                                     type="button" 
+                                    data-index={index}
                                     data-cy="sort-selection"
                                     onClick={() => setFilter(list.title)}
                                 >
