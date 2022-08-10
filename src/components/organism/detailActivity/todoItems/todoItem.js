@@ -4,11 +4,13 @@ import { deleteTodoActivity, editTodoActivity } from '../../../../action/todo';
 import ModalDelete from '../../activity/modalDelete/modalDelete';
 import { useState, useEffect } from 'react';
 import ModalEditTodo from '../modalAddTodo/modalEditTodo';
+import Alert from '../../../elements/alert/alert';
 
 export default function TodoItem({ getDetailActivity, activity, setActivity }){
 
     const [showModal, setShowModal] = useState(false);
     const [showModalEdit, setShowModalEdit] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
     const [dataToDelete, setDataToDelete] = useState({});
     const [dataToEdit, setDataToEdit] = useState({});
 
@@ -33,8 +35,9 @@ export default function TodoItem({ getDetailActivity, activity, setActivity }){
     // atau bisa juga diambil dari state => dataToDelete
     const handleDeleteTodoItem = async (id) => {
         await deleteTodoActivity(id);
-        setShowModal(false);
         getDetailActivity();
+        setShowModal(false);
+        setTimeout(() => setShowAlert(true),  300);
     }
 
     const FindAndEditTodo = (todo) => {
@@ -69,6 +72,7 @@ export default function TodoItem({ getDetailActivity, activity, setActivity }){
                 heading="List Item"
                 handleDelete={handleDeleteTodoItem} 
             />
+            <Alert showAlert={showAlert} setShowAlert={setShowAlert}/>
         </>
         ) 
         

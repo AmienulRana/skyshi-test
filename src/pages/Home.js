@@ -8,7 +8,7 @@ import { getActivity, addActivity, deleteActivity } from "../action/activity";
 import ModalDelete from "../components/organism/activity/modalDelete";
 import Button from "../components/elements/button";
 import Loading from "../components/elements/loading";
-
+import Alert from '../components/elements/alert/alert';
 
 
 
@@ -16,6 +16,7 @@ export default function Home(){
     const [activitys, setActivitys] = useState([]);
     const [activityToDeleted, setActivityToDeleted] = useState({});
     const [showModal, setShowModal] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
     const [loading, setLoading] = useState(true);
     const fetchData = async () => {
         const response = await getActivity();
@@ -33,6 +34,7 @@ export default function Home(){
         if(response.status !== 'failed'){
             fetchData();
             setShowModal(false);
+            setTimeout(() => setShowAlert(true), 300);
         }
     }
     const handleFindActivity = (id) => {
@@ -77,6 +79,7 @@ export default function Home(){
                 setShowModal={setShowModal}
                 handleDelete={handleDeleteActivity}
             />
+            <Alert showAlert={showAlert} setShowAlert={setShowAlert}/>
         </Layout>
     )
 }
