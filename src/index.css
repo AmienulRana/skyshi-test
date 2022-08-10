@@ -11,7 +11,7 @@ body{
 :root{
   --primary-color:rgb(22, 171, 248);
   --white-color:rgb(255, 255, 255);
-  --padding-content:120px;
+  --padding-content:170px;
   --disabled-color: rgba(136, 136, 136, 1);
   --grey-color:rgba(229, 229, 229, 1);
   --pink-color:rgba(237, 76, 92, 1);
