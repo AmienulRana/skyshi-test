@@ -17,12 +17,12 @@ export default function TodoItem({ getDetailActivity, activity, setActivity }){
     const handleChangeTodoDone = async (todo) => {
         const findAndDoneTodo = activity.todo_items.filter(d => {
             if(d.id === todo.id){
-                d.is_active = d.is_active > 0 ? 0 : 1;
+                d.is_active = d.is_active === 1 ? 0 : 1;
             }
             return d;
         }) 
         setActivity({...activity, todo_items: findAndDoneTodo});
-        await editTodoActivity({...todo, is_active: todo.is_active > 0 ? 1 : 0});
+        await editTodoActivity({...todo, is_active: todo.is_active === 1 ? 0 : 1});
     }
 
 
@@ -52,7 +52,7 @@ export default function TodoItem({ getDetailActivity, activity, setActivity }){
                     <label data-cy="todo-item-checkbox">
                         <input type="checkbox" onChange={() => handleChangeTodoDone(todo)} checked={todo.is_active} />
                     </label>
-                    <p className={todo.is_active > 0 ? styles.done : ''} data-cy="todo-item-title"><span className={["levelColor", todo.priority].join(' ')} />{todo.title}</p>
+                    <p className={todo.is_active === 1 ? styles.done : ''} data-cy="todo-item-title"><span className={["levelColor", todo.priority].join(' ')} />{todo.title}</p>
                     <Pencil data-cy="todo-item-edit-button" onClick={() => FindAndEditTodo(todo.id)}/>
                     <button type="button" data-cy="todo-item-delete-button" onClick={() => handleDataToDelete({ title: todo.title, id: todo.id})}>
                         <TrashIcon className={styles.delete} />
