@@ -16,7 +16,7 @@ export default function DetailAcivity(){
     const [activity, setActivity] = useState({});
     const [titleActivity, setTitleActivity] = useState('');
     const [showModalAdd, setShowModalAdd] = useState(false);
-    const [filter, setFilter] = useState('Terbaru');
+    const [filterName, setFilterName] = useState('Terbaru');
 
     const [loading, setLoading] = useState(true);
 
@@ -24,6 +24,7 @@ export default function DetailAcivity(){
         const response = await detailActivity(id);
         setActivity(response);
         setTitleActivity(response.title);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const compareStringForSort = (a, b)  => {
@@ -32,7 +33,7 @@ export default function DetailAcivity(){
     const handleFilterTodoItem = () => {
         let todo_items= [];
         
-        switch(filter){
+        switch(filterName){
             case 'Terlama' : 
                 todo_items = activity?.todo_items?.sort((a,b) => a.id - b.id);
                 setActivity({...activity, todo_items});
@@ -63,7 +64,8 @@ export default function DetailAcivity(){
         if(!loading){
             handleFilterTodoItem();
         }
-    }, [filter, loading, getDetailActivity]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [filterName, loading, getDetailActivity]);
     return(
         <Layout>
             <Header 
@@ -73,7 +75,7 @@ export default function DetailAcivity(){
                 setShowModal={setShowModalAdd}
                 titleActivity={titleActivity} 
                 setTitleActivity={setTitleActivity}
-                setFilter={setFilter}
+                setFilter={setFilterName}
             />
             {loading ? 
                 ( <Loading /> ) :
