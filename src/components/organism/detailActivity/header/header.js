@@ -31,12 +31,6 @@ export default function Header(props){
     const handleEditStateTitleActivity = (e) => {
         setTitleActivity(e.target.value);            
     }
-    const handleKeyDown = async (e) => {
-        if(e.key === 'Enter'){
-            validateAndEditTitleActivite();
-            setEditTitleActivity(false);
-        }
-    }
     const handleBlur = () => {
         validateAndEditTitleActivite();
         setEditTitleActivity(false);
@@ -52,7 +46,6 @@ export default function Header(props){
                             type="text" 
                             value={titleActivity} 
                             onChange={handleEditStateTitleActivity}
-                            onKeyDown={handleKeyDown}
                             onBlur={handleBlur}
                             autoFocus={true}
                          /> : 
